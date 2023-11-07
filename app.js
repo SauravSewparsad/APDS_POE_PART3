@@ -7,16 +7,19 @@ const fs = require('fs');
 const cors = require('cors');
 const hsts = require('./middleware/hsts');
 const mongoose = require('mongoose');
+//const morgan = require('morgan');
+
+// setup the logger
+//app.use(morgan('combined', { stream: accessLogStream }))
 
 //DB
-
 mongoose
     .connect(process.env.MONGODB_URL)
     .then(() => console.log('DB connected...'));
 
 // Middleware
 //app.use(helmet());
-app.use(cors({ origin: 'https://localhost:3000', optionsSuccessStatus: 200}))
+app.use(cors({ origin: 'https://localhost:4200', optionsSuccessStatus: 200}))
 app.use(express.json());
 app.use(hsts);
 
